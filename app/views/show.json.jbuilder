@@ -1,0 +1,1 @@
+json.partial! 'beer.json.builder', beer: @beer
