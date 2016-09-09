@@ -1,0 +1,16 @@
+<div ng-app="app">
+  <div ng-controller="beerCtrl">
+    Beer Filter: <input ng-model="beerFilter">
+    Alcohol Percentage: <input ng-model="alcoholFilter">
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+    </table>
+    <tr ng-repeat="beer in beers">
+      <td>{{beer.name}}</td>
+      <td>{{beer.price}}</td>
+    </tr>
+  </div>
+</div>

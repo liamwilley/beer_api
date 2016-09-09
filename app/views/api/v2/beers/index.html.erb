@@ -1,14 +1,26 @@
 <div ng-app="app">
   <div ng-controller="beerCtrl" ng-init="setup()">
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Price</th>
-      </tr>
-    </table>
-    <tr ng-repeat="beer in beers">
-      <td>{{beer.name}}</td>
-      <td>{{beer.price}}</td>
-    </tr>
+    <liam-directive></liam-directive>
+    <div>
+    <datalist id="beers">
+      <option ng-repeat="beer in beers">{{beer.name}}</option>
+      <option ng-repeat="beer in beers">{{beer.alcohol_percentage}}</option>
+    </datalist>
+      <table style="width:100%" class="animated jello flipInY">
+        <tr>
+          <th ng-click="toggleOrder('name')">Name</th>
+          <th ng-click="toggleOrder('alcohol_percentage')">Alcohol Percentage</th>
+        </tr>
+        <tr ng-repeat="beer in beers | filter: {beer: Attribute, alcohol_percentage: Attribute} | orderBy:orderAttribute:descending ">
+          <td>{{beer.name}}</td>
+          <td>{{beer.alcohol_percentage}}</td>
+        </tr>
+      </table>
+<!-- 
+      <div ng-repeat="beer in beers | filter: {beer: beerFilter, alcohol_percentage: alcoholPercentage, orderBy:order}">
+        <h2 ng-click="toggleAlcoholPercentage">{{beer.name}}</h2>
+        <p ng-if="beer.alcoholPercentageVisible">{{beer.alcohol_percentage}}</p>
+        <hr />
+      </div> -->
   </div>
 </div>

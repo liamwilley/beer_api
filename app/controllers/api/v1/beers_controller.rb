@@ -2,6 +2,7 @@ class Api::V1::BeersController < ApplicationController
   
   def index
     @beers = Beer.all
+    render json: @beers
   end
 
   def show
@@ -11,8 +12,11 @@ class Api::V1::BeersController < ApplicationController
 
   def create
     @beer = Beer.new(name: params[:name], price: params[:price], alcohol_percentage: params[:alcohol_percentage], beer_type: params[:beer_type])
-    @beer.save
-    render :show
+    if @beer.save
+      render :show
+    else
+      render json: {errors: @beer.errors.full_messages}, status:422
+    end
   end
 
   def destroy
